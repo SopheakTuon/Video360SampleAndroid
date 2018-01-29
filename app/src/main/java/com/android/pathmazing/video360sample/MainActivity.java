@@ -22,21 +22,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickVideo360(View view){
+    public void onClickVideo360(View view) {
         Intent intent = new Intent(MainActivity.this, VideoActivity.class);
-        File dir = Environment.getExternalStorageDirectory();
-        File yourFile = new File(dir, "/sample360.mp4");
-        Uri uri = Uri.fromFile(yourFile);
-        intent.setData(uri);
+        intent.setData(createUri());
         startActivity(intent);
     }
 
-    public void onClickVideoVR(View view){
+    public void onClickVideoVR(View view) {
         Intent intent = new Intent(MainActivity.this, VrVideoActivity.class);
+        intent.setData(createUri());
+        startActivity(intent);
+    }
+
+    public static Uri createUri() {
         File dir = Environment.getExternalStorageDirectory();
         File yourFile = new File(dir, "/sample360.mp4");
         Uri uri = Uri.fromFile(yourFile);
-        intent.setData(uri);
-        startActivity(intent);
+        return uri;
     }
 }

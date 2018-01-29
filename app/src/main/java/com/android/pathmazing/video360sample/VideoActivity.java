@@ -137,7 +137,7 @@ public class VideoActivity extends Activity {
     protected void onNewIntent(Intent intent) {
         // Save the new Intent which may contain a new Uri. Then tear down & recreate this Activity to
         // load that Uri.
-        setIntent(getIntentFromIntent());
+        setIntent(intent);
         recreate();
     }
 
@@ -151,16 +151,7 @@ public class VideoActivity extends Activity {
             root.getChildAt(i).setVisibility(View.VISIBLE);
         }
         findViewById(R.id.permission_button).setVisibility(View.GONE);
-        videoView.loadMedia(getIntentFromIntent());
-    }
-
-    private Intent getIntentFromIntent() {
-        Intent intent = getIntent();
-//        File dir = Environment.getExternalStorageDirectory();
-//        File yourFile = new File(dir, "/sample360.mp4");
-//        Uri uri = Uri.fromFile(yourFile);
-//        intent.setData(uri);
-        return intent;
+        videoView.loadMedia(getIntent());
     }
 
     @Override
