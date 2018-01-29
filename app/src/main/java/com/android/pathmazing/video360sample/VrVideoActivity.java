@@ -106,7 +106,7 @@ public class VrVideoActivity extends GvrActivity {
         gvrView.setOnCloseButtonListener(new Runnable() {
             @Override
             public void run() {
-//        launch2dActivity();
+//                launch2dActivity();
             }
         });
 
@@ -176,7 +176,7 @@ public class VrVideoActivity extends GvrActivity {
                 == PackageManager.PERMISSION_GRANTED) {
             mediaLoader.handleIntent(getIntent(), uiView);
         } else {
-//      exitFromVr();
+            exitFromVr();
             // This method will return false on Cardboard devices. This case isn't handled in this sample
             // but it should be handled for VR Activities that run on Cardboard devices.
         }
