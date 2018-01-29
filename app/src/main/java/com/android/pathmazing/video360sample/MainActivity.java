@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.android.pathmazing.video360sample.renderer.Mesh;
+
 import java.io.File;
 
 /**
@@ -24,19 +26,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickVideo360(View view) {
         Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+        intent.putExtra(
+                MediaLoader.MEDIA_FORMAT_KEY,
+                getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
+        intent.setData(createUri());
         intent.setData(createUri());
         startActivity(intent);
     }
 
     public void onClickVideoVR(View view) {
         Intent intent = new Intent(MainActivity.this, VrVideoActivity.class);
+        intent.putExtra(
+                MediaLoader.MEDIA_FORMAT_KEY,
+                getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
         intent.setData(createUri());
         startActivity(intent);
     }
 
     public static Uri createUri() {
         File dir = Environment.getExternalStorageDirectory();
-        File yourFile = new File(dir, "/video360/360VRVideoSample.mp4");
+        File yourFile = new File(dir, "/video360/Clash of Clans 360.mp4");
         Uri uri = Uri.fromFile(yourFile);
         return uri;
     }
