@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.pathmazing.video360sample;
+package com.android.pathmazing.video360sample.customview;
 
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +33,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.android.pathmazing.video360sample.MediaLoader;
 import com.android.pathmazing.video360sample.renderer.SceneRenderer;
 import com.google.vr.sdk.base.Eye.Type;
 

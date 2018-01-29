@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.pathmazing.video360sample;
+package com.android.pathmazing.video360sample.customview;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -37,6 +37,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.android.pathmazing.video360sample.R;
 import com.android.pathmazing.video360sample.renderer.CanvasQuad;
 
 

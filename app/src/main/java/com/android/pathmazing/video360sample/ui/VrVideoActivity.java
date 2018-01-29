@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.pathmazing.video360sample;
+package com.android.pathmazing.video360sample.ui;
 
 import android.Manifest.permission;
 import android.app.Activity;
@@ -30,6 +30,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
+import com.android.pathmazing.video360sample.MediaLoader;
+import com.android.pathmazing.video360sample.customview.VideoUiView;
 import com.android.pathmazing.video360sample.renderer.SceneRenderer;
 import com.google.vr.ndk.base.DaydreamApi;
 import com.google.vr.sdk.base.AndroidCompat;

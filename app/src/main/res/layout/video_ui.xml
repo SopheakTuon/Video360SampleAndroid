@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- UI to control video playback. See the class's javadoc for more info. -->
-<com.android.pathmazing.video360sample.VideoUiView
+<com.android.pathmazing.video360sample.customview.VideoUiView
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/video_ui_view"
   android:orientation="horizontal"
@@ -40,4 +40,4 @@
     android:layout_height="match_parent"
     android:background="@drawable/enter_vr"
     android:contentDescription="@string/enter_vr_label"/>
-</com.android.pathmazing.video360sample.VideoUiView>
+</com.android.pathmazing.video360sample.customview.VideoUiView>

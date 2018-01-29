@@ -31,8 +31,11 @@ import android.support.annotation.MainThread;
 import android.util.Log;
 import android.view.Surface;
 
+import com.android.pathmazing.video360sample.customview.VideoUiView;
 import com.android.pathmazing.video360sample.renderer.Mesh;
 import com.android.pathmazing.video360sample.renderer.SceneRenderer;
+import com.android.pathmazing.video360sample.ui.VideoActivity;
+import com.android.pathmazing.video360sample.ui.VrVideoActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;

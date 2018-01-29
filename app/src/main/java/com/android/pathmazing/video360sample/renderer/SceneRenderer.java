@@ -37,7 +37,7 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.ViewGroup;
 
-import com.android.pathmazing.video360sample.VideoUiView;
+import com.android.pathmazing.video360sample.customview.VideoUiView;
 import com.google.vr.sdk.controller.Orientation;
 
 import java.util.concurrent.atomic.AtomicBoolean;

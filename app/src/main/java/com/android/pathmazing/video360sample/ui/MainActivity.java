@@ -1,4 +1,4 @@
-package com.android.pathmazing.video360sample;
+package com.android.pathmazing.video360sample.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.android.pathmazing.video360sample.MediaLoader;
+import com.android.pathmazing.video360sample.R;
 import com.android.pathmazing.video360sample.renderer.Mesh;
 
 import java.io.File;
