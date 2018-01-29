@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static Uri createUri() {
         File dir = Environment.getExternalStorageDirectory();
-        File yourFile = new File(dir, "/video360/Clash of Clans 360.mp4");
+        File yourFile = new File(dir, "/video360/Mega Coaster- Get Ready for the Drop (360 Video) - YouTube_2.mp4");
         Uri uri = Uri.fromFile(yourFile);
         return uri;
     }
