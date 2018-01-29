@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.fromFile(yourFile);
         intent.setData(uri);
         startActivity(intent);
-
     }
 
     public void onClickVideoVR(View view){
