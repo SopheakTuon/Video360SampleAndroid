@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,8 +21,6 @@ import com.android.volley.VolleyError;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-
 /**
  * @author Sopheak Tuon
  * @created on 29-Jan-18
@@ -37,18 +34,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickVideo360(View view) {
-        String youTubeUrl = "https://youtu.be/wczdECcwRw0";
-        onLoadYouTubeVideo(youTubeUrl, new OnLoadYouTubeResponse() {
+        view.postDelayed(new Runnable() {
             @Override
-            public void onSuccess(String streamingUrl) {
-                startNewActivity(VideoActivity.class, streamingUrl);
-            }
+            public void run() {
+                String youTubeUrl = "https://youtu.be/wczdECcwRw0";
+                onLoadYouTubeVideo(youTubeUrl, new OnLoadYouTubeResponse() {
+                    @Override
+                    public void onSuccess(String streamingUrl) {
+                        startNewActivity(VideoActivity.class, streamingUrl);
+                    }
 
-            @Override
-            public void onError() {
-                Toast.makeText(MainActivity.this, "Cannot load video.", Toast.LENGTH_LONG).show();
+                    @Override
+                    public void onError() {
+                        Toast.makeText(MainActivity.this, "Cannot load video.", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
-        });
+        }, 300);
     }
 
     public void onClickVideoVR(View view) {
@@ -118,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static Uri createUri() {
-        File dir = Environment.getExternalStorageDirectory();
-        File yourFile = new File(dir, "/video360/Clash of Clans.mp4");
-        Uri uri = Uri.fromFile(yourFile);
-        return uri;
-    }
+//    public static Uri createUri() {
+//        File dir = Environment.getExternalStorageDirectory();
+//        File yourFile = new File(dir, "/video360/Clash of Clans.mp4");
+//        Uri uri = Uri.fromFile(yourFile);
+//        return uri;
+//    }
 }
