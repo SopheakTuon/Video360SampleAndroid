@@ -36,18 +36,10 @@ public class YoutubeDownloader {
 
     public YoutubeDownloader(Context context) {
         this.context = context;
-        mRequestQueue = Volley.newRequestQueue(getContext(), new HurlStack());
+        mRequestQueue = Volley.newRequestQueue(context, new HurlStack());
     }
 
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    public OnResponse getOnResponse() {
+    private OnResponse getOnResponse() {
         return onResponse;
     }
 
@@ -110,14 +102,14 @@ public class YoutubeDownloader {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            relult.put("status", status);
-                            relult.put("title", title);
-                            relult.put("thumbnail_url", thumbnail_url);
-                            relult.put("videoId", YoutubeDownloader.this.videoId);
-                            relult.put("token", token);
-                            relult.put("reason", reason);
-                            relult.put("statusCode", statusCode);
-                            relult.put("videos", videojs);
+                            relult.put(Constants.status, status);
+                            relult.put(Constants.title, title);
+                            relult.put(Constants.thumbnail_url, thumbnail_url);
+                            relult.put(Constants.videoId, YoutubeDownloader.this.videoId);
+                            relult.put(Constants.token, token);
+                            relult.put(Constants.reason, reason);
+                            relult.put(Constants.statusCode, statusCode);
+                            relult.put(Constants.videos, videojs);
                             OnResponse on = getOnResponse();
                             if (on != null)
                                 on.onResponse(relult);

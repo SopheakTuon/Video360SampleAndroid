@@ -7,4 +7,5 @@
     <string name="pause_label">Pause video</string>
     <string name="permission_warning">This app will not run without permission to read from storage. Click to enable permission.</string>
     <string name="play_label">Play video</string>
+    <string name="loading_video">Loading video...</string>
 </resources>

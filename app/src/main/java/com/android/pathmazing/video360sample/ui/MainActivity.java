@@ -8,7 +8,9 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
+import com.android.pathmazing.video360sample.Constants;
 import com.android.pathmazing.video360sample.MediaLoader;
 import com.android.pathmazing.video360sample.R;
 import com.android.pathmazing.video360sample.renderer.Mesh;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError() {
-
+                Toast.makeText(MainActivity.this, "Cannot load video.", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError() {
-
+                Toast.makeText(MainActivity.this, "Cannot load video.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void onLoadYouTubeVideo(String youTubeUrl, final OnLoadYouTubeResponse onLoadYouTubeResponse) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading video...");
+        progressDialog.setMessage(getString(R.string.loading_video));
         progressDialog.setCancelable(false);
         try {
             progressDialog.show();
@@ -85,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(final JSONObject video) {
                     try {
                         progressDialog.dismiss();
-                        JSONArray jsonArrayVideos = video.getJSONArray("videos");
+                        JSONArray jsonArrayVideos = video.getJSONArray(Constants.videos);
                         if (jsonArrayVideos.length() > 0) {
                             JSONObject jsonObjectVideo = jsonArrayVideos.getJSONObject(0);
-                            String url = jsonObjectVideo.getString("url");
+                            String url = jsonObjectVideo.getString(Constants.url);
                             onLoadYouTubeResponse.onSuccess(url);
                         }
                     } catch (Exception e) {
