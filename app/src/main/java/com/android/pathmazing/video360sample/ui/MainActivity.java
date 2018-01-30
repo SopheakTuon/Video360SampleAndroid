@@ -1,5 +1,6 @@
 package com.android.pathmazing.video360sample.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,12 @@ import android.view.View;
 import com.android.pathmazing.video360sample.MediaLoader;
 import com.android.pathmazing.video360sample.R;
 import com.android.pathmazing.video360sample.renderer.Mesh;
+import com.android.pathmazing.video360sample.utils.YouTubeUtil;
+import com.android.pathmazing.video360sample.utils.YoutubeDownloader;
+import com.android.volley.VolleyError;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 
@@ -27,22 +34,86 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickVideo360(View view) {
-        Intent intent = new Intent(MainActivity.this, VideoActivity.class);
-        intent.putExtra(
-                MediaLoader.MEDIA_FORMAT_KEY,
-                getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
-        intent.setData(createUri());
-        intent.setData(createUri());
-        startActivity(intent);
+        String youTubeUrl = "https://youtu.be/wczdECcwRw0";
+        onLoadYouTubeVideo(youTubeUrl, new OnLoadYouTubeResponse() {
+            @Override
+            public void onSuccess(String streamingUrl) {
+                Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+                intent.putExtra(
+                        MediaLoader.MEDIA_FORMAT_KEY,
+                        getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
+                intent.setData(Uri.parse(streamingUrl));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
     }
 
     public void onClickVideoVR(View view) {
-        Intent intent = new Intent(MainActivity.this, VrVideoActivity.class);
-        intent.putExtra(
-                MediaLoader.MEDIA_FORMAT_KEY,
-                getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
-        intent.setData(createUri());
-        startActivity(intent);
+        String youTubeUrl = "https://youtu.be/wczdECcwRw0";
+        onLoadYouTubeVideo(youTubeUrl, new OnLoadYouTubeResponse() {
+            @Override
+            public void onSuccess(String streamingUrl) {
+                Intent intent = new Intent(MainActivity.this, VrVideoActivity.class);
+                intent.putExtra(
+                        MediaLoader.MEDIA_FORMAT_KEY,
+                        getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
+                intent.setData(Uri.parse(streamingUrl));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+
+    }
+
+    private void onLoadYouTubeVideo(String youTubeUrl, final OnLoadYouTubeResponse onLoadYouTubeResponse) {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading video...");
+        progressDialog.setCancelable(false);
+        try {
+            progressDialog.show();
+            YoutubeDownloader youtubeDownloader = new YoutubeDownloader(this);
+            youtubeDownloader.setOnResponse(new YoutubeDownloader.OnResponse() {
+                @Override
+                public void onResponse(final JSONObject video) {
+                    try {
+                        progressDialog.dismiss();
+                        JSONArray jsonArrayVideos = video.getJSONArray("videos");
+                        if (jsonArrayVideos.length() > 0) {
+                            JSONObject jsonObjectVideo = jsonArrayVideos.getJSONObject(0);
+                            String url = jsonObjectVideo.getString("url");
+                            onLoadYouTubeResponse.onSuccess(url);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    try {
+                        progressDialog.dismiss();
+                        onLoadYouTubeResponse.onError();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            String videoId = YouTubeUtil.getYoutubeVideoIdFromUrl(youTubeUrl);
+            if (videoId != null)
+                youtubeDownloader.download(videoId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            progressDialog.dismiss();
+        }
     }
 
     public static Uri createUri() {
@@ -50,5 +121,11 @@ public class MainActivity extends AppCompatActivity {
         File yourFile = new File(dir, "/video360/Clash of Clans.mp4");
         Uri uri = Uri.fromFile(yourFile);
         return uri;
+    }
+
+    public interface OnLoadYouTubeResponse {
+        void onSuccess(String streamingUrl);
+
+        void onError();
     }
 }

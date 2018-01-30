@@ -28,4 +28,7 @@ dependencies {
     compile 'com.google.vr:sdk-base:1.120.0'
     compile 'com.google.vr:sdk-controller:1.120.0'
     compile 'com.google.vr:sdk-videowidget:1.120.0'
+
+    //Request SDK
+    compile 'com.mcxiaoke.volley:library:1.0.19'
 }
