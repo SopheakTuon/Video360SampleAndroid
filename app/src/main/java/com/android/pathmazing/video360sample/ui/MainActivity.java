@@ -14,6 +14,7 @@ import com.android.pathmazing.video360sample.Constants;
 import com.android.pathmazing.video360sample.MediaLoader;
 import com.android.pathmazing.video360sample.R;
 import com.android.pathmazing.video360sample.renderer.Mesh;
+import com.android.pathmazing.video360sample.utils.OnLoadYouTubeResponse;
 import com.android.pathmazing.video360sample.utils.YouTubeUtil;
 import com.android.pathmazing.video360sample.utils.YoutubeDownloader;
 import com.android.volley.VolleyError;
@@ -122,11 +123,5 @@ public class MainActivity extends AppCompatActivity {
         File yourFile = new File(dir, "/video360/Clash of Clans.mp4");
         Uri uri = Uri.fromFile(yourFile);
         return uri;
-    }
-
-    public interface OnLoadYouTubeResponse {
-        void onSuccess(String streamingUrl);
-
-        void onError();
     }
 }
