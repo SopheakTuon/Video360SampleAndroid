@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Video360SampleAndroid.iml" filepath="$PROJECT_DIR$/Video360SampleAndroid.iml" />
+      <module fileurl="file://D:\Research Worksplace\Video360SampleAndroid\Video360SampleAndroid.iml" filepath="D:\Research Worksplace\Video360SampleAndroid\Video360SampleAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Research Worksplace\Video360SampleAndroid\app\app.iml" filepath="D:\Research Worksplace\Video360SampleAndroid\app\app.iml" />
     </modules>
   </component>
 </project>
