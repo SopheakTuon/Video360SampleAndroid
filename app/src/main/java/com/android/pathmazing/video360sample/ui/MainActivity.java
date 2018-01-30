@@ -38,12 +38,7 @@ public class MainActivity extends AppCompatActivity {
         onLoadYouTubeVideo(youTubeUrl, new OnLoadYouTubeResponse() {
             @Override
             public void onSuccess(String streamingUrl) {
-                Intent intent = new Intent(MainActivity.this, VideoActivity.class);
-                intent.putExtra(
-                        MediaLoader.MEDIA_FORMAT_KEY,
-                        getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
-                intent.setData(Uri.parse(streamingUrl));
-                startActivity(intent);
+                startNewActivity(VideoActivity.class, streamingUrl);
             }
 
             @Override
@@ -58,12 +53,7 @@ public class MainActivity extends AppCompatActivity {
         onLoadYouTubeVideo(youTubeUrl, new OnLoadYouTubeResponse() {
             @Override
             public void onSuccess(String streamingUrl) {
-                Intent intent = new Intent(MainActivity.this, VrVideoActivity.class);
-                intent.putExtra(
-                        MediaLoader.MEDIA_FORMAT_KEY,
-                        getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
-                intent.setData(Uri.parse(streamingUrl));
-                startActivity(intent);
+                startNewActivity(VrVideoActivity.class, streamingUrl);
             }
 
             @Override
@@ -73,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void startNewActivity(Class activity, String streamingUrl) {
+        Intent intent = new Intent(MainActivity.this, activity);
+        intent.putExtra(MediaLoader.MEDIA_FORMAT_KEY,
+                getIntent().getIntExtra(MediaLoader.MEDIA_FORMAT_KEY, Mesh.MEDIA_MONOSCOPIC));
+        intent.setData(Uri.parse(streamingUrl));
+        startActivity(intent);
+    }
+
 
     private void onLoadYouTubeVideo(String youTubeUrl, final OnLoadYouTubeResponse onLoadYouTubeResponse) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
